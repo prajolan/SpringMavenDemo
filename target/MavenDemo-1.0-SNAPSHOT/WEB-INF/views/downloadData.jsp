@@ -11,7 +11,11 @@
 </head>
 <body>
     <div align="center">
-        <h3><a href="<c:url value="/downloadExcel"/>"/>Download Excel Document</a></h3>
+        <h3><a href="<c:url value="/download-${'excel'}"/>"/>Download Excel Document</a></h3>
+        
+    </div>
+    <div align="center">
+        <h3><a href="<c:url value="/download-${'Pdf'}"/>"/>Download PDF Document</a></h3>
     </div>
 </body>
 </html>

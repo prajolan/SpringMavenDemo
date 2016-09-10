@@ -25,29 +25,29 @@ public class PdfView extends AbstractPdfView {
 
     @Override
     protected void buildPdfDocument(Map<String, Object> model, Document document, PdfWriter writer, HttpServletRequest request, HttpServletResponse response) throws Exception {
-    
-   
-        Users user = (Users) model.get("user");
-//                List<Users> user = (List<Users>) model.get("user");
 
- 
-        PdfPTable table = new PdfPTable(3);
+        //Users user = (Users) model.get("user");
+         List<Users> userlist = (List<Users>) model.get("allUsers");
+
+        PdfPTable table = new PdfPTable(4);
         table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_CENTER);
         table.getDefaultCell().setVerticalAlignment(Element.ALIGN_MIDDLE);
         table.getDefaultCell().setBackgroundColor(Color.lightGray);
- 
-//        table.addCell("ID");
+
+        table.addCell("ID");
         table.addCell("First Name");
         table.addCell("Last Name");
         table.addCell("Email");
- 
-//        table.addCell(user.Id());
-        table.addCell(user.getFirstName());
-        table.addCell(user.getLastName());
-        table.addCell(user.getEmail());
- 
+
+        for(Users users:userlist){
+        table.addCell(users.getId().toString());
+        table.addCell(users.getFirstName());
+        table.addCell(users.getLastName());
+        table.addCell(users.getEmail());
+        }
+
         document.add(table);
- 
+
     }
-    
+
 }

@@ -13,31 +13,37 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <table>
-            <thead>
-                <tr>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Email</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
-                </tr>
-            </thead>
-            <tbody>
+        <!--<a href="<c:url value="/download-${'excel'}"/>">Download Excel Document</a>-->
+        <a href="<c:url value="/download-${'excel'}"/>"><img height="20" width="20" src="<c:url value="/static/images/Excel.jpg"/>"/></a>
+        <a href="<c:url value="/download-${'Pdf'}"/>"/>Download Pdf Document</a>
+    <table>
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
 
 
-            </tbody>
-            <c:forEach items="${users}" var="u">
-                <tr>
-                    <td>${u.firstName}</td>
-                    <td>${u.lastName}</td>
-                    <td>${u.email}</td>
-                    <td><a href="edit-${u.id}">Edit</a></td>
-                    <td><a href="delete?id=${u.id}">delete</a></td>
+        </tbody>
 
-                </tr>
+        <c:forEach items="${users}" var="u">
+            <tr>
+                <td>${u.firstName}</td>
+                <td>${u.lastName}</td>
+                <td>${u.email}</td>
+                <td><a href="edit-${u.id}">Edit</a></td>
+                <td><a href="delete?id=${u.id}">delete</a></td>
 
-            </c:forEach>
-        </table>
-    </body>
+
+            </tr>
+
+        </c:forEach>
+
+    </table>
+</body>
 </html>

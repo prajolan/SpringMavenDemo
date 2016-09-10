@@ -10,6 +10,7 @@ import com.itn.Entities.FileBucket;
 import com.itn.Entities.UserProfile;
 import com.itn.Entities.Users;
 import com.itn.excelDao.ExcelView;
+import com.itn.excelDao.PdfView;
 import com.itn.services.DocumentService;
 import com.itn.services.UserProfileService;
 import com.itn.services.UserService;
@@ -55,14 +56,13 @@ public class IndexController {
         return "Hello There";
     }
 //    __________________________________AngularTest___________________________________________________
-     @RequestMapping({"/","/home1"})
+
+    @RequestMapping({"/", "/home1"})
     public String loadAng() {
         return "angularForm";
     }
-    
+
     //    _____________________________________________________________________________________
-
-
     @RequestMapping(value = "/new")
     public String loadPage(ModelMap mp) {
         mp.addAttribute("message", "Hello there");
@@ -231,12 +231,15 @@ public class IndexController {
         return "downloadData";
     }
 
-    @RequestMapping(value = "/downloadExcel", method = RequestMethod.GET)
+    @RequestMapping(value = "/download-{file}", method = RequestMethod.GET)
     //We do not need ModelMap in this method since we are not loading any jsp page
-    public ModelAndView downloadExcel() {
+    public ModelAndView downloadExcel(@PathVariable String file) {
         List<Users> allUsers = userService.findAll();
         System.out.println(allUsers.size());
-        return new ModelAndView(new ExcelView(), "allUsers", allUsers);
+        if (file.equals("excel")) {
+            return new ModelAndView(new ExcelView(), "allUsers", allUsers);
+        }
+        return new ModelAndView(new PdfView(),"allUsers", allUsers);
     }
     //  -----------  APACHE POI or API for excel conversion ends here----------------
 
